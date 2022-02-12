@@ -1,0 +1,14 @@
+/usr/bin/opieinfo
+/usr/bin/login
+/usr/bin/chpass
+/usr/bin/passwd
+/usr/bin/opiepasswd
+/usr/bin/su
+/usr/bin/crontab
+/usr/lib/librt.so.1
+/lib/libc.so.7
+/lib/libthr.so.3
+/lib/libcrypt.so.5
+/libexec/ld-elf.so.1
+/libexec/ld-elf32.so.1
+/sbin/init
