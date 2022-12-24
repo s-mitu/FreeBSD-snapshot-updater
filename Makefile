@@ -1,15 +1,24 @@
+ARCH=amd64
+SNAPSHOTS_BIN=kernel.txz base.txz
+SNAPSHOTS_SRC=src.txz
+SNAPSHOTS=$(SNAPSHOTS_BIN) $(SNAPSHOTS_SRC)
+SNAPSHOTS_BIN_DEBUG=$(SNAPSHOTS_BIN:S/./-dbg./g)
+SNAPSHOTS_DEBUG=$(SNAPSHOTS_BIN_DEBUG)
+
 default: fetch
 
-kernel.txz:
-	fetch https://download.freebsd.org/ftp/snapshots/amd64/14.0-CURRENT/kernel.txz
-base.txz:
-	fetch https://download.freebsd.org/ftp/snapshots/amd64/14.0-CURRENT/base.txz
-src.txz:
-	fetch https://download.freebsd.org/ftp/snapshots/amd64/14.0-CURRENT/src.txz
+download:
+	fetch https://download.freebsd.org/ftp/snapshots/${ARCH}/14.0-CURRENT/$(DOWNLOADFILE)
 
-SNAPSHOTS=kernel.txz base.txz src.txz
+.for i in $(SNAPSHOTS) $(SNAPSHOTS_DEBUG)
+$i:
+	@$(MAKE) DOWNLOADFILE=$@ download
+.endfor
 
 fetch: $(SNAPSHOTS)
+
+fetch-debug: $(SNAPSHOTS_DEBUG)
+
 
 clean:
 	pwd
