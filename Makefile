@@ -1,7 +1,9 @@
-ARCH=amd64
+.include <bsd.cpu.mk>
+
+ARCH=$(MACHINE_CPUARCH)
 DOWNLOAD_URI=https://download.freebsd.org
 DOWNLOAD_SNAPSHOTS_PATH=ftp/snapshots
-DOWNLOAD_VERSION=14.0-CURRENT
+DOWNLOAD_VERSION!=uname -r
 
 SNAPSHOTS_BIN=kernel.txz base.txz
 SNAPSHOTS_SRC=src.txz
